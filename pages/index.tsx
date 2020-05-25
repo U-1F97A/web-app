@@ -1,6 +1,7 @@
-import Head from 'next/head'
+import Head from 'next/head';
+import * as React from 'react';
 
-export default function Home() {
+export const Home: React.FC = () => {
   return (
     <div className="container">
       <Head>
@@ -205,5 +206,5 @@ export default function Home() {
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
