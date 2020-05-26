@@ -1,4 +1,10 @@
-import Document, { Html, Head, Main, NextScript } from 'next/document';
+import Document, {
+  DocumentContext,
+  Html,
+  Head,
+  Main,
+  NextScript,
+} from 'next/document';
 import * as React from 'react';
 import { ServerStyleSheet } from 'styled-components';
 
@@ -13,14 +19,14 @@ class CustomDocument extends Document implements CustomDocumentInterface {
   title = 'Demo Next.js';
   description = 'Demo of Next.js';
 
-  static async getInitialProps(context): Promise<any> {
+  static async getInitialProps(context: DocumentContext): Promise<any> {
     const sheet = new ServerStyleSheet();
     const originalRenderPage = context.renderPage;
 
     try {
-      context.renderPage = (): any =>
+      context.renderPage = () =>
         originalRenderPage({
-          enhanceApp: (App) => (props): void =>
+          enhanceApp: (App) => (props) =>
             sheet.collectStyles(<App {...props} />),
         });
 
