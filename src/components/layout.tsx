@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import * as React from 'react';
+import styled from 'styled-components';
 
 type Props = {
   title?: string;
@@ -23,7 +24,7 @@ const Layout: React.FC<Props> = ({
         <a href="/api/users">Users API</a>
       </nav>
     </header>
-    {children}
+    <Main>{children}</Main>
     <footer>
       <a
         href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
@@ -35,5 +36,14 @@ const Layout: React.FC<Props> = ({
     </footer>
   </div>
 );
+
+const Main = styled.main`
+  min-height: 100vh;
+  padding: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 
 export default Layout;
