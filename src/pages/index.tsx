@@ -2,7 +2,8 @@ import { NextPage } from 'next';
 import * as React from 'react';
 import styled from 'styled-components';
 
-import Button from '~/components/button';
+import InputForm from '../components/input-form';
+
 import Layout from '~/components/layout';
 
 const Home: NextPage = () => {
@@ -10,7 +11,7 @@ const Home: NextPage = () => {
     <>
       <Layout title="🥺">
         <Main>
-          <Button text="submit" />
+          <InputForm></InputForm>
         </Main>
       </Layout>
     </>

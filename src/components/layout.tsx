@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import Link from 'next/link';
 import * as React from 'react';
 
 type Props = {
@@ -18,9 +17,10 @@ const Layout: React.FC<Props> = ({
     </Head>
     <header>
       <nav>
-        <Link href="/">Home</Link>
-        <Link href="/about">About</Link>
-        <Link href="/users">Users List</Link>
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/users">Users List</a>
+        <a href="/api/users">Users API</a>
       </nav>
     </header>
     {children}
