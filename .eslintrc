@@ -19,6 +19,7 @@
     }
   },
   "rules": {
+    "unicorn/consistent-function-scoping": 0,
     "unicorn/prevent-abbreviations": [
       1,
       {
