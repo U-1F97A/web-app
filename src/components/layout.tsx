@@ -12,7 +12,7 @@ const Layout: React.FC<Props> = ({
   children,
   title = 'This is the default title',
 }) => (
-  <div>
+  <Container>
     <Head>
       <title>{title}</title>
       <meta charSet="utf-8" />
@@ -20,10 +20,15 @@ const Layout: React.FC<Props> = ({
     </Head>
     <Main>{children}</Main>
     <Footer />
-  </div>
+  </Container>
 );
 
+const Container = styled.div`
+  position: relative;
+`;
+
 const Main = styled.main`
+  min-height: 100vh;
   padding: 48px;
   max-width: 1024px;
   margin: 0 auto;
@@ -36,7 +41,7 @@ const Main = styled.main`
 const Footer = styled.footer`
   height: 48px;
   background-color: ${Colors.green};
-  position: fixed;
+  position: absolute;
   bottom: 0;
   left: 0;
   right: 0;

@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import * as React from 'react';
 import { FC, useState } from 'react';
+import styled, { css } from 'styled-components';
 
 import ConfirmButton from '~/components/confirm-button';
 import KarteQuestionBox from '~/components/karte-question-box';
@@ -47,8 +48,7 @@ const InterviewForm: FC = () => {
 
   return (
     <>
-      <h2>カルテ</h2>
-      <form onSubmit={handleSubmit}>
+      <CustomForm onSubmit={handleSubmit}>
         <KarteQuestionBox no={1} text={'本のタイトルを入力してね'}>
           <TextInput
             name="bookTitle"
@@ -132,9 +132,16 @@ const InterviewForm: FC = () => {
           </p>
         </KarteQuestionBox>
         <ConfirmButton title="送信" />
-      </form>
+      </CustomForm>
     </>
   );
 };
+
+const CustomForm = styled.form`
+  text-align: center;
+  & > * {
+    margin-bottom: 48px;
+  }
+`;
 
 export default InterviewForm;
