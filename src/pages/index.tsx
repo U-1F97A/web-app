@@ -27,14 +27,15 @@ const Title = styled.h1`
   position: relative;
 
   &::after{
+    content: '';
     position: absolute;
-    bottom: 0;
+    bottom: -4px;
     right: 0;
     left: 0;
-    height: 5px;
+    height: 12px;
     width: 100%;
     background-color: ${Colors.yellow};
-    z-index: 0;
+    z-index: -1;
   }
 `;
 
