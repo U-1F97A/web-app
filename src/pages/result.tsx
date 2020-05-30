@@ -1,17 +1,13 @@
 import { NextPage } from 'next';
 import * as React from 'react';
-import GoogleLoginButton from '~/components/google-login-button';
-import { useDispatch } from 'react-redux';
 
-import InterviewForm from '~/components/interview-form';
 import Layout from '~/components/layout';
 
 const Home: NextPage = () => {
   return (
     <>
       <Layout title="🥺">
-        <InterviewForm />
-        <GoogleLoginButton />
+        <h2>結果</h2>
       </Layout>
     </>
   );

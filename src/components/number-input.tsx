@@ -7,13 +7,17 @@ interface Props {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const TextInput: FC<Props> = (props) => {
+const NumberInput: FC<Props> = (props) => {
   const { value, onChange } = props;
   return (
     <>
-      <input type="text" value={value} onChange={(event) => onChange(event)} />
+      <input
+        type="number"
+        value={value}
+        onChange={(event) => onChange(event)}
+      />
     </>
   );
 };
 
-export default TextInput;
+export default NumberInput;
