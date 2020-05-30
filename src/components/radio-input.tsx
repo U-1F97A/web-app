@@ -3,16 +3,16 @@ import { FC } from 'react';
 
 interface Props {
   name: string;
-  items: RadioItem[];
+  items: RadioInputItem[];
   onChange: (key: number) => void;
 }
 
-export type RadioItem = {
+export type RadioInputItem = {
   key: number;
   value: string;
 };
 
-const Radio: FC<Props> = (props) => {
+const RadioInput: FC<Props> = (props) => {
   const { name, items, onChange } = props;
   return (
     <>
@@ -26,4 +26,4 @@ const Radio: FC<Props> = (props) => {
   );
 };
 
-export default Radio;
+export default RadioInput;

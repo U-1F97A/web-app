@@ -3,14 +3,14 @@ import * as React from 'react';
 import { FC, useState } from 'react';
 
 import NumberInput from '~/components/number';
-import Radio from '~/components/radio';
+import RadioInput from '~/components/radio-input';
 import TextInput from '~/components/text-input';
 import {
   knowledgeBaseItem,
   levelItem,
   habitItem,
   goodAtItem,
-} from '~/constants/karte-items';
+} from '~/constants/karte-question-items';
 
 type KarteItem = {
   bookTitle: string;
@@ -71,7 +71,7 @@ const InterviewForm: FC = () => {
         </div>
         <div>
           <h3>本の分野に基礎知識はどのくらいありますか？</h3>
-          <Radio
+          <RadioInput
             name="base"
             items={knowledgeBaseItem}
             onChange={(key) => {
@@ -82,7 +82,7 @@ const InterviewForm: FC = () => {
         </div>
         <div>
           <h3>本のレベルはどのくらいですか？</h3>
-          <Radio
+          <RadioInput
             name="level"
             items={levelItem}
             onChange={(key) => {
@@ -93,7 +93,7 @@ const InterviewForm: FC = () => {
         </div>
         <div>
           <h3>普段から本は読みますか？</h3>
-          <Radio
+          <RadioInput
             name="habit"
             items={habitItem}
             onChange={(key) => {
@@ -104,7 +104,7 @@ const InterviewForm: FC = () => {
         </div>
         <div>
           <h3>活字を読むことは得意ですか？</h3>
-          <Radio
+          <RadioInput
             name="goodAt"
             items={goodAtItem}
             onChange={(key) => {
