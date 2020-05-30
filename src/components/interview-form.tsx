@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { FC, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
-import { useBookState } from '~/ducks/book/selectors';
+import { StoreState } from '~/store';
+import { BookState } from '~/store/book/types';
 
 const InterviewForm: FC = () => {
-  const bookState = useBookState();
+  const bookState = useSelector<StoreState, BookState>((s) => s.book);
 
   useEffect(() => {
     console.log(bookState);
