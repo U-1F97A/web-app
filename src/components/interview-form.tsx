@@ -3,7 +3,7 @@ import * as React from 'react';
 import { FC, useState } from 'react';
 
 import NumberInput from '~/components/number';
-import Radio, { RadioItem } from '~/components/radio';
+import Radio from '~/components/radio';
 import TextInput from '~/components/text-input';
 import {
   knowledgeBaseItem,
