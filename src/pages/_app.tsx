@@ -1,10 +1,10 @@
-import App, { AppProps } from 'next/app';
+import App from 'next/app';
 import * as React from 'react';
-import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
-import 'minireset.css';
 
-import createStore from '~/ducks/create-store';
+import { wrapper } from '~/store';
+
+import 'minireset.css';
 
 const theme = {
   body: {
@@ -16,18 +16,16 @@ const theme = {
   },
 };
 
-class MyApp extends App {
+class WrappedApp extends App {
   render(): JSX.Element {
-    const { Component, pageProps }: AppProps = this.props;
+    const { Component, pageProps } = this.props;
 
     return (
-      <Provider store={createStore()}>
-        <ThemeProvider theme={theme}>
-          <Component {...pageProps} />
-        </ThemeProvider>
-      </Provider>
+      <ThemeProvider theme={theme}>
+        <Component {...pageProps} />
+      </ThemeProvider>
     );
   }
 }
 
-export default MyApp;
+export default wrapper.withRedux(WrappedApp);
