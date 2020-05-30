@@ -17,7 +17,7 @@ const Layout: React.FC<Props> = ({
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
     <Main>{children}</Main>
-    <footer></footer>
+    <Footer />
   </div>
 );
 
@@ -28,6 +28,14 @@ const Main = styled.main`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+`;
+
+const Footer = styled.footer`
+  height: 32px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
 `;
 
 export default Layout;
