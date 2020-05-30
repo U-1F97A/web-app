@@ -18,10 +18,13 @@ const bookSlice = createSlice({
   name: 'book',
   initialState,
   reducers: {
-    updateBook: (state, action: PayloadAction<BookState>) => ({
-      ...state,
-      action,
-    }),
+    updateBook: (state, action: PayloadAction<BookState>) => {
+      const newState = {
+        ...state,
+        ...action.payload,
+      };
+      return newState;
+    },
   },
 });
 

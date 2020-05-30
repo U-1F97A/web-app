@@ -46,6 +46,7 @@
     "eslint-plugin-react-hooks": "^4.0.2",
     "eslint-plugin-unicorn": "^20.0.0",
     "prettier": "^2.0.5",
+    "redux": "^4.0.5",
     "stylelint": "^13.5.0",
     "stylelint-config-prettier": "^8.0.1",
     "stylelint-config-standard": "^20.0.0",

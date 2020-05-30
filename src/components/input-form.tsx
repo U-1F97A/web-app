@@ -1,11 +1,16 @@
 import { useRouter } from 'next/router';
 import * as React from 'react';
-import { FC, useState } from 'react';
+import { FC, useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 import TextInput from '~/components/text-input';
+import { useBookState } from '~/ducks/book/selectors';
+import bookSlice from '~/ducks/book/slice';
 
 const InputForm: FC = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
+  const bookState = useBookState();
   const [bookTitle, setBookTitle] = useState('');
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -15,9 +20,15 @@ const InputForm: FC = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(bookTitle);
-    router.push('/karte');
+    dispatch(bookSlice.actions.updateBook({ ...bookState, title: 'hoge' }));
   };
+
+  useEffect(() => {
+    if (bookState.title !== '') {
+      console.log(bookState);
+      router.push('/karte');
+    }
+  }, [bookState]);
 
   return (
     <>

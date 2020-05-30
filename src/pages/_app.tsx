@@ -19,9 +19,10 @@ const theme = {
 class MyApp extends App {
   render(): JSX.Element {
     const { Component, pageProps }: AppProps = this.props;
+    const store = createStore();
 
     return (
-      <Provider store={createStore()}>
+      <Provider store={store}>
         <ThemeProvider theme={theme}>
           <Component {...pageProps} />
         </ThemeProvider>
