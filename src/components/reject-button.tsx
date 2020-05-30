@@ -38,7 +38,7 @@ const Button = styled.button`
 
 const TextWrapper = styled.div`
   ${Fonts.h4}
-  color: ${Colors.white};
+  color: ${Colors.black};
 `;
 
 export default RejectButton;

@@ -26,37 +26,45 @@ const Karte: NextPage = () => {
       <Layout title="書籍検索 | read, read, read!">
         <ButlerWrapper>
           <ButlerTalk>
-            <CustomButtlerText isDisplay={!isSuccess}>
-              <Emphasized>本の名前</Emphasized>を入力してください
-            </CustomButtlerText>
-            <CustomButtlerText isDisplay={isSuccess}>
-              <Emphasized>この本であっていますか？</Emphasized>
-            </CustomButtlerText>
+            <ButtlerTextWrapper>
+              <CustomButtlerText isDisplay={!isSuccess}>
+                <Emphasized>本の名前</Emphasized>を入力してください
+              </CustomButtlerText>
+              <CustomButtlerText isDisplay={isSuccess}>
+                <Emphasized>この本であっていますか？</Emphasized>
+              </CustomButtlerText>
+            </ButtlerTextWrapper>
           </ButlerTalk>
         </ButlerWrapper>
         <ButtonWrapper>
-          <InputWrapper>
-            <TextInput
-              value={inputText}
-              onChange={(event) => setInputText(event.target.value)}
-              isError={isError}
-              errorText={errorText}
+          <InputContent isDisplay={!isSuccess}>
+            <InputWrapper>
+              <TextInput
+                value={inputText}
+                onChange={(event) => setInputText(event.target.value)}
+                isError={isError}
+                errorText={errorText}
+              />
+            </InputWrapper>
+            <ConfirmButton
+              title={'送信'}
+              onClick={() => setBookName(inputText)}
             />
-          </InputWrapper>
-          <ConfirmButton
-            title={'送信'}
-            onClick={() => setBookName(inputText)}
-          />
-        </ButtonWrapper>
-        <ButtonWrapper>
-          <BookWrapper>
-            <BookImg />
-            <BookTitle>{'hoge'}</BookTitle>
-          </BookWrapper>
-          <ConfirmButton
-            title={'送信'}
-            onClick={() => setBookName(inputText)}
-          />
+          </InputContent>
+          <InputContent isDisplay={isSuccess}>
+            <BookWrapper>
+              <BookImg />
+              <BookTitle>{'hoge'}</BookTitle>
+            </BookWrapper>
+            <ConfirmButton
+              title={'送信'}
+              onClick={() => setBookName(inputText)}
+            />
+            <RejectButton
+              title={'ちがう'}
+              onClick={() => setIsSuccess(false)}
+            />
+          </InputContent>
         </ButtonWrapper>
       </Layout>
     </>
@@ -67,7 +75,17 @@ const ButlerWrapper = styled.section`
   margin-bottom: 48px;
 `;
 
+const ButtlerTextWrapper = styled.div`
+  position: relative;
+`;
+
 const CustomButtlerText = styled(ButtlerText)<{ isDisplay: boolean }>`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
   opacity: 0;
 
   ${({ isDisplay }) =>
@@ -87,6 +105,22 @@ const BookWrapper = styled.div`
   max-width: 80%;
   margin: auto;
   margin-bottom: 24px;
+`;
+
+const InputContent = styled.div<{ isDisplay: boolean }>`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  opacity: 0;
+
+  ${({ isDisplay }) =>
+    isDisplay &&
+    css`
+      opacity: 1;
+    `}
 `;
 
 const BookImg = styled.img`
