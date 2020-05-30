@@ -2,6 +2,8 @@ import Head from 'next/head';
 import * as React from 'react';
 import styled from 'styled-components';
 
+import { BreakPoints, Colors } from '~/styles/variables';
+
 type Props = {
   title?: string;
 };
@@ -22,16 +24,18 @@ const Layout: React.FC<Props> = ({
 );
 
 const Main = styled.main`
-  min-height: 100vh;
-  padding: 0 0.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  padding: 48px;
+  max-width: 1024px;
+  margin: 0 auto;
+
+  @media (max-width: ${BreakPoints.sm}) {
+    padding: 16px;
+  }
 `;
 
 const Footer = styled.footer`
   height: 32px;
+  background-color: ${Colors.green};
   position: fixed;
   bottom: 0;
   left: 0;
