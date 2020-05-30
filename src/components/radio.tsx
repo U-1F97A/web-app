@@ -20,7 +20,6 @@ const Radio: FC<Props> = (props) => {
         <label key={item.key}>
           <input type="radio" name={name} onChange={() => onChange(item.key)} />
           {item.value}
-          <br />
         </label>
       ))}
     </>

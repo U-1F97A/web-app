@@ -7,7 +7,7 @@ interface Props {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Number: FC<Props> = (props) => {
+const NumberInput: FC<Props> = (props) => {
   const { value, onChange } = props;
   return (
     <>
@@ -20,4 +20,4 @@ const Number: FC<Props> = (props) => {
   );
 };
 
-export default Number;
+export default NumberInput;
