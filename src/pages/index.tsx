@@ -1,5 +1,6 @@
 import { NextPage } from 'next';
 import * as React from 'react';
+import GoogleLoginButton from '~/components/google-login-button';
 import { useDispatch } from 'react-redux';
 
 import InputForm from '~/components/input-form';
@@ -18,7 +19,8 @@ const Home: NextPage = () => {
   return (
     <>
       <Layout title="🥺">
-        <InputForm />
+          <InputForm />
+          <GoogleLoginButton />
         {bookState.title}
       </Layout>
     </>
