@@ -6,8 +6,8 @@ import styled, { css } from 'styled-components';
 
 import ButlerTalk from '~/components/butler-talk';
 import ConfirmButton from '~/components/confirm-button';
-import InterviewForm from '~/components/interview-form';
 import Layout from '~/components/layout';
+import { ButtlerText, Emphasized } from '~/styles/common-styles';
 import { Fonts } from '~/styles/mixins';
 import { Colors } from '~/styles/variables';
 
@@ -16,11 +16,12 @@ const Karte: NextPage = () => {
 
   return (
     <>
-      <Layout title="read, read, read!">
+      <Layout title="書籍検索 | read, read, read!">
         <ButlerWrapper>
           <ButlerTalk>
-            <Title>read, read, read!</Title>
-            <SubTitle>ríːd rέd rέd</SubTitle>
+            <ButtlerText>
+              <Emphasized>本の名前</Emphasized>を入力してください
+            </ButtlerText>
           </ButlerTalk>
         </ButlerWrapper>
         <TextWrapper>
