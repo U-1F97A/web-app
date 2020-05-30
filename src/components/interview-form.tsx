@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import * as React from 'react';
 import { FC, useState } from 'react';
 
+import KarteQuestionBox from '~/components/karte-question-box';
 import NumberInput from '~/components/number-input';
 import RadioInput from '~/components/radio-input';
 import TextInput from '~/components/text-input';
@@ -47,8 +48,7 @@ const InterviewForm: FC = () => {
     <>
       <h2>カルテ</h2>
       <form onSubmit={handleSubmit}>
-        <div>
-          <h3>本のタイトルを入力してね</h3>
+        <KarteQuestionBox no={1} text={'本のタイトルを入力してね'}>
           <TextInput
             name="bookTitle"
             value={karteItem.bookTitle}
@@ -57,7 +57,7 @@ const InterviewForm: FC = () => {
             }}
           />
           <p>{karteItem.bookTitle}</p>
-        </div>
+        </KarteQuestionBox>
         <div>
           <h3>本を読む目的はなんですか？</h3>
           <TextInput
