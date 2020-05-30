@@ -1,44 +1,36 @@
+import { useRouter } from 'next/router';
 import * as React from 'react';
 import { FC, useState } from 'react';
 
-import TextInput from './text-input';
+import TextInput from '~/components/text-input';
 
 const InputForm: FC = () => {
-  const [state, setState] = useState({
-    book_title: '',
-  });
+  const router = useRouter();
+  const [bookTitle, setBookTitle] = useState('');
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.persist();
-    setState((previousState) => {
-      return { ...previousState, book_title: event.target.value };
-    });
+    setBookTitle(event.target.value);
   };
 
-  const submitAlert = (event: React.MouseEvent) => {
-    event.persist();
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const error = Object.values(state).some((value) => {
-      return value.length === 0;
-    });
-
-    if (error) {
-      alert('未入力項目があります');
-    } else {
-      alert('送信します');
-    }
+    console.log(bookTitle);
+    router.push('/karte');
   };
 
   return (
     <>
       <h2>本のタイトルを入力してね</h2>
-      <TextInput
-        text="book_title"
-        value={state.book_title}
-        onChange={handleInputChange}
-      />
-      <p>{state.book_title}</p>
-      <button onClick={submitAlert}>送信</button>
+      <form onSubmit={handleSubmit}>
+        <TextInput
+          text="bookTitle"
+          value={bookTitle}
+          onChange={handleInputChange}
+        />
+        <p>{bookTitle}</p>
+        <input type="submit" value="送信" />
+      </form>
     </>
   );
 };
