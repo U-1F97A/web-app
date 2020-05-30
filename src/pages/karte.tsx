@@ -8,7 +8,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Layout title="🥺">
-        <InterviewForm></InterviewForm>
+        <InterviewForm />
       </Layout>
     </>
   );
