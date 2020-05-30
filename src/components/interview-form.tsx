@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import * as React from 'react';
 import { FC, useState } from 'react';
 
-import NumberInput from '~/components/number';
+import NumberInput from '~/components/number-input';
 import RadioInput from '~/components/radio-input';
 import TextInput from '~/components/text-input';
 import {
