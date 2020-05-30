@@ -15,7 +15,7 @@ const theme = {
     boxSizing: 'border-box',
   },
 };
-baclass WrappedApp extends App {
+class WrappedApp extends App {
   render(): JSX.Element {
     const { Component, pageProps } = this.props;
 
