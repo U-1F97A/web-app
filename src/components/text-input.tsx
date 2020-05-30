@@ -44,7 +44,6 @@ const InputWrapper = styled.div<{ isError: boolean }>`
     css`
       border: 1px solid ${Colors.red};
     `}
-}
 `;
 
 const ErrorText = styled.div`

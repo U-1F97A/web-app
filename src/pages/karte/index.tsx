@@ -16,17 +16,21 @@ const Karte: NextPage = () => {
   const router = useRouter();
   const [bookName, setBookName] = useState('');
   const [inputText, setInputText] = useState('');
-  const [isError, setIsError] = useState(true);
+  const [isError, setIsError] = useState(false);
   const [errorText, setErrorText] = useState('Error');
+  const [isSuccess, setIsSuccess] = useState(false);
 
   return (
     <>
       <Layout title="書籍検索 | read, read, read!">
         <ButlerWrapper>
           <ButlerTalk>
-            <ButtlerText>
+            <CustomButtlerText isDisplay={!isSuccess}>
               <Emphasized>本の名前</Emphasized>を入力してください
-            </ButtlerText>
+            </CustomButtlerText>
+            <CustomButtlerText isDisplay={isSuccess}>
+              <Emphasized>この本であっていますか？</Emphasized>
+            </CustomButtlerText>
           </ButlerTalk>
         </ButlerWrapper>
         <ButtonWrapper>
@@ -43,6 +47,16 @@ const Karte: NextPage = () => {
             onClick={() => setBookName(inputText)}
           />
         </ButtonWrapper>
+        <ButtonWrapper>
+          <BookWrapper>
+            <BookImg />
+            <BookTitle>{'hoge'}</BookTitle>
+          </BookWrapper>
+          <ConfirmButton
+            title={'送信'}
+            onClick={() => setBookName(inputText)}
+          />
+        </ButtonWrapper>
       </Layout>
     </>
   );
@@ -52,10 +66,37 @@ const ButlerWrapper = styled.section`
   margin-bottom: 48px;
 `;
 
+const CustomButtlerText = styled(ButtlerText)<{ isDisplay: boolean }>`
+  opacity: 0;
+
+  ${({ isDisplay }) =>
+    isDisplay &&
+    css`
+      opacity: 1;
+    `}
+`;
+
 const InputWrapper = styled.div`
   max-width: 80%;
   margin: auto;
   margin-bottom: 24px;
+`;
+
+const BookWrapper = styled.div`
+  max-width: 80%;
+  margin: auto;
+  margin-bottom: 24px;
+`;
+
+const BookImg = styled.img`
+  height: 180px;
+  width: 100px;
+  background-color: ${Colors.lightGray};
+`;
+
+const BookTitle = styled.p`
+  ${Fonts.h4}
+  color: ${Colors.Gray};
 `;
 
 const ButtonWrapper = styled.section`
