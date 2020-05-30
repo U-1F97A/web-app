@@ -9,10 +9,10 @@ export const Colors = {
 } as const;
 
 export const FontSizes = {
-  h1: '48px',
-  h2: '32px',
-  h3: '24px',
-  h4: '24px',
+  h1: '64px',
+  h2: '48px',
+  h3: '32px',
+  h4: '32px',
   text: '16px',
   cap: '12px',
   sp_h1: '32px',
@@ -24,11 +24,12 @@ export const FontSizes = {
 } as const;
 
 export const FontWeights = {
-  black: '600',
-  exBold: '500',
-  bold: '400',
-  medium: '300',
-  regular: '200',
+  black: '900',
+  heavy: '800',
+  bold: '700',
+  medium: '500',
+  regular: '400',
+  light: '300',
   thin: '100',
 } as const;
 

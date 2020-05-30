@@ -8,6 +8,8 @@ import Document, {
 import * as React from 'react';
 import { ServerStyleSheet } from 'styled-components';
 
+import GlobalStyle from '~/styles/global-style';
+
 interface CustomDocumentInterface {
   url: string;
   title: string;
@@ -64,6 +66,11 @@ class CustomDocument extends Document implements CustomDocumentInterface {
           <meta name="twitter:image" content={`${this.url}/ogp.png`}></meta>
           <link rel="icon" href="/favicon.ico" />
           <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+          <link
+            href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&display=swap"
+            rel="stylesheet"
+          ></link>
+          <GlobalStyle />
         </Head>
         <body>
           <Main />
