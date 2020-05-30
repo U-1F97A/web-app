@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import * as React from 'react';
 import { FC, useState } from 'react';
 
+import ConfirmButton from '~/components/confirm-button';
 import KarteQuestionBox from '~/components/karte-question-box';
 import NumberInput from '~/components/number-input';
 import RadioInput from '~/components/radio-input';
@@ -58,8 +59,7 @@ const InterviewForm: FC = () => {
           />
           <p>{karteItem.bookTitle}</p>
         </KarteQuestionBox>
-        <div>
-          <h3>本を読む目的はなんですか？</h3>
+        <KarteQuestionBox no={1} text={'本を読む目的はなんですか？'}>
           <TextInput
             name="purpose"
             value={karteItem.purpose}
@@ -67,10 +67,11 @@ const InterviewForm: FC = () => {
               setKarteItem({ ...karteItem, purpose: event.target.value });
             }}
           />
-          <p>{karteItem.purpose}</p>
-        </div>
-        <div>
-          <h3>本の分野に基礎知識はどのくらいありますか？</h3>
+        </KarteQuestionBox>
+        <KarteQuestionBox
+          no={2}
+          text={'本の分野に基礎知識はどのくらいありますか？'}
+        >
           <RadioInput
             name="base"
             items={knowledgeBaseItem}
@@ -78,9 +79,8 @@ const InterviewForm: FC = () => {
               setKarteItem({ ...karteItem, knowledgeBaseValue: key });
             }}
           />
-          <p>{karteItem.knowledgeBaseValue}</p>
-        </div>
-        <div>
+        </KarteQuestionBox>
+        <KarteQuestionBox no={3} text={'本のレベルはどのくらいですか？'}>
           <h3>本のレベルはどのくらいですか？</h3>
           <RadioInput
             name="level"
@@ -90,9 +90,8 @@ const InterviewForm: FC = () => {
             }}
           />
           <p>{karteItem.levelValue}</p>
-        </div>
-        <div>
-          <h3>普段から本は読みますか？</h3>
+        </KarteQuestionBox>
+        <KarteQuestionBox no={4} text={'普段から本は読みますか？'}>
           <RadioInput
             name="habit"
             items={habitItem}
@@ -100,10 +99,8 @@ const InterviewForm: FC = () => {
               setKarteItem({ ...karteItem, habitValue: key });
             }}
           />
-          <p>{karteItem.habitValue}</p>
-        </div>
-        <div>
-          <h3>活字を読むことは得意ですか？</h3>
+        </KarteQuestionBox>
+        <KarteQuestionBox no={4} text={'活字を読むことは得意ですか'}>
           <RadioInput
             name="goodAt"
             items={goodAtItem}
@@ -111,10 +108,11 @@ const InterviewForm: FC = () => {
               setKarteItem({ ...karteItem, goodAtValue: key });
             }}
           />
-          <p>{karteItem.goodAtValue}</p>
-        </div>
-        <div>
-          <h3>毎日何時から何分の時間が確保できそうですか?</h3>
+        </KarteQuestionBox>
+        <KarteQuestionBox
+          no={5}
+          text={'毎日何時から何分の時間が確保できそうですか?'}
+        >
           <TextInput
             name="time"
             value={karteItem.timeString}
@@ -132,8 +130,8 @@ const InterviewForm: FC = () => {
           <p>
             {karteItem.timeString}から{karteItem.minuteString}分間
           </p>
-        </div>
-        <input type="submit" value="送信" />
+        </KarteQuestionBox>
+        <ConfirmButton title="送信" />
       </form>
     </>
   );
