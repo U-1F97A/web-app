@@ -24,9 +24,17 @@ const Home: NextPage = () => {
 const Title = styled.h1`
   ${Fonts.h1}
   color: ${Colors.black};
+  position: relative;
 
   &::after{
-    
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 5px;
+    width: 100%;
+    background-color: ${Colors.yellow};
+    z-index: 0;
   }
 `;
 
