@@ -5,7 +5,8 @@ export const Colors = {
   yellow: '#f9dc5c',
   red: '#eb5757',
   beige: '#f4ede1',
-  gray: '#323B44',
+  darkGray: '#323B44',
+  gray: '#828282',
   lightGray: '#f2f2f2',
 } as const;
 

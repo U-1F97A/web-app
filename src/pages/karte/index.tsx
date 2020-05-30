@@ -131,7 +131,7 @@ const BookImg = styled.img`
 
 const BookTitle = styled.p`
   ${Fonts.h4}
-  color: ${Colors.Gray};
+  color: ${Colors.gray};
 `;
 
 const ButtonWrapper = styled.section`
