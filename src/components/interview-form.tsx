@@ -12,54 +12,32 @@ import {
   goodAtItem,
 } from '~/constants/karte-items';
 
+type KarteItem = {
+  bookTitle: string;
+  purpose: string;
+  knowledgeBaseValue: number;
+  levelValue: number;
+  habitValue: number;
+  goodAtValue: number;
+  timeString: string;
+  minuteString: string;
+};
+
+const InitialKarteItem: KarteItem = {
+  bookTitle: '',
+  purpose: '',
+  knowledgeBaseValue: -1,
+  levelValue: -1,
+  habitValue: -1,
+  goodAtValue: -1,
+  timeString: '19:30',
+  minuteString: '10',
+};
+
 const InterviewForm: FC = () => {
   const router = useRouter();
+  const [karteItem, setKarteItem] = useState(InitialKarteItem);
 
-  const [bookTitle, setBookTitle] = useState('');
-  const [purpose, setPurpose] = useState('');
-  const [knowledgeBaseValue, setKnowledgeBaseValue] = useState(-1);
-  const [levelValue, setLevelValue] = useState(-1);
-  const [habitValue, setHabitValue] = useState(-1);
-  const [goodAtValue, setGoodAtValue] = useState(-1);
-  const [timeString, setTimeString] = useState('');
-  const [minuteString, setMinuteString] = useState(1);
-
-  const handleBookTitleInputChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    event.persist();
-    setBookTitle(event.target.value);
-  };
-  const handlePurposeInputChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    event.persist();
-    setPurpose(event.target.value);
-  };
-  const handleBaseRadioButton = (key: number) => {
-    setKnowledgeBaseValue(key);
-  };
-  const handleLevelRadioButton = (key: number) => {
-    setLevelValue(key);
-  };
-  const handleHabitRadioButton = (key: number) => {
-    setHabitValue(key);
-  };
-  const handleGoodAtRadioButton = (key: number) => {
-    setGoodAtValue(key);
-  };
-  const handleTimeInputChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    event.persist();
-    setTimeString(event.target.value);
-  };
-  const handleMinuteInputChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    event.persist();
-    setMinuteString(event.target.valueAsNumber);
-  };
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     router.push('/result');
@@ -73,78 +51,86 @@ const InterviewForm: FC = () => {
           <h3>本のタイトルを入力してね</h3>
           <TextInput
             name="bookTitle"
-            value={bookTitle}
-            onChange={handleBookTitleInputChange}
+            value={karteItem.bookTitle}
+            onChange={(event) => {
+              setKarteItem({ ...karteItem, bookTitle: event.target.value });
+            }}
           />
-        </div>
-        <div>
-          <h3>本のタイトルを入力してね</h3>
-          <TextInput
-            name="bookTitle"
-            value={bookTitle}
-            onChange={handleBookTitleInputChange}
-          />
-          <p>{bookTitle}</p>
+          <p>{karteItem.bookTitle}</p>
         </div>
         <div>
           <h3>本を読む目的はなんですか？</h3>
           <TextInput
             name="purpose"
-            value={purpose}
-            onChange={handlePurposeInputChange}
+            value={karteItem.purpose}
+            onChange={(event) => {
+              setKarteItem({ ...karteItem, purpose: event.target.value });
+            }}
           />
-          <p>{purpose}</p>
+          <p>{karteItem.purpose}</p>
         </div>
         <div>
           <h3>本の分野に基礎知識はどのくらいありますか？</h3>
           <Radio
             name="base"
             items={knowledgeBaseItem}
-            onChange={handleBaseRadioButton}
+            onChange={(key) => {
+              setKarteItem({ ...karteItem, knowledgeBaseValue: key });
+            }}
           />
-          <p>{knowledgeBaseValue}</p>
+          <p>{karteItem.knowledgeBaseValue}</p>
         </div>
         <div>
           <h3>本のレベルはどのくらいですか？</h3>
           <Radio
             name="level"
             items={levelItem}
-            onChange={handleLevelRadioButton}
+            onChange={(key) => {
+              setKarteItem({ ...karteItem, levelValue: key });
+            }}
           />
-          <p>{levelValue}</p>
+          <p>{karteItem.levelValue}</p>
         </div>
         <div>
           <h3>普段から本は読みますか？</h3>
           <Radio
             name="habit"
             items={habitItem}
-            onChange={handleHabitRadioButton}
+            onChange={(key) => {
+              setKarteItem({ ...karteItem, habitValue: key });
+            }}
           />
-          <p>{habitValue}</p>
+          <p>{karteItem.habitValue}</p>
         </div>
         <div>
           <h3>活字を読むことは得意ですか？</h3>
           <Radio
             name="goodAt"
             items={goodAtItem}
-            onChange={handleGoodAtRadioButton}
+            onChange={(key) => {
+              setKarteItem({ ...karteItem, goodAtValue: key });
+            }}
           />
-          <p>{goodAtValue}</p>
+          <p>{karteItem.goodAtValue}</p>
         </div>
         <div>
           <h3>毎日何時から何分の時間が確保できそうですか?</h3>
           <TextInput
             name="time"
-            value={timeString}
-            onChange={handleTimeInputChange}
+            value={karteItem.timeString}
+            onChange={(event) => {
+              setKarteItem({ ...karteItem, timeString: event.target.value });
+            }}
           />
           <NumberInput
             name="minute"
-            value={minuteString}
-            onChange={handleMinuteInputChange}
+            value={karteItem.minuteString}
+            onChange={(event) => {
+              setKarteItem({ ...karteItem, minuteString: event.target.value });
+            }}
           />
           <p>
-            {timeString}から{minuteString}分間
+            {karteItem.timeString}から{karteItem.minuteString}分間
           </p>
         </div>
         <input type="submit" value="送信" />

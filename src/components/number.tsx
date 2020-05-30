@@ -3,7 +3,7 @@ import { FC } from 'react';
 
 interface Props {
   name: string;
-  value: number;
+  value: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
