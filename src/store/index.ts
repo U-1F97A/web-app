@@ -8,4 +8,4 @@ export type ReduxStore = Store<StoreState>;
 
 const makeStore: MakeStore<StoreState> = (context: Context) =>
   createStore(rootReducer);
-export const wrapper = createWrapper<State>(makeStore, { debug: true });
+export const wrapper = createWrapper<StoreState>(makeStore, { debug: true });
