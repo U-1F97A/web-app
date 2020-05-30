@@ -12,7 +12,7 @@ export const FontSizes = {
   h1: '64px',
   h2: '48px',
   h3: '32px',
-  h4: '32px',
+  h4: '16px',
   text: '16px',
   cap: '12px',
   sp_h1: '32px',

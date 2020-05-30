@@ -1,15 +1,17 @@
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import * as React from 'react';
+import { useState } from 'react';
 import styled, { css } from 'styled-components';
 
 import ButlerTalk from '~/components/butler-talk';
 import ConfirmButton from '~/components/confirm-button';
+import InterviewForm from '~/components/interview-form';
 import Layout from '~/components/layout';
 import { Fonts } from '~/styles/mixins';
 import { Colors } from '~/styles/variables';
 
-const Home: NextPage = () => {
+const Karte: NextPage = () => {
   const router = useRouter();
 
   return (
@@ -106,4 +108,4 @@ const Description = styled.p`
   margin: auto;
 `;
 
-export default Home;
+export default Karte;

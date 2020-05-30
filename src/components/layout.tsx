@@ -34,7 +34,7 @@ const Main = styled.main`
 `;
 
 const Footer = styled.footer`
-  height: 32px;
+  height: 48px;
   background-color: ${Colors.green};
   position: fixed;
   bottom: 0;
