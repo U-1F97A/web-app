@@ -7,6 +7,7 @@ import styled, { css } from 'styled-components';
 import ButlerTalk from '~/components/butler-talk';
 import ConfirmButton from '~/components/confirm-button';
 import Layout from '~/components/layout';
+import TextInput from '~/components/text-input';
 import { ButtlerText, Emphasized } from '~/styles/common-styles';
 import { Fonts } from '~/styles/mixins';
 import { Colors } from '~/styles/variables';
@@ -15,6 +16,8 @@ const Karte: NextPage = () => {
   const router = useRouter();
   const [bookName, setBookName] = useState('');
   const [inputText, setInputText] = useState('');
+  const [isError, setIsError] = useState(true);
+  const [errorText, setErrorText] = useState('Error');
 
   return (
     <>
@@ -27,6 +30,14 @@ const Karte: NextPage = () => {
           </ButlerTalk>
         </ButlerWrapper>
         <ButtonWrapper>
+          <InputWrapper>
+            <TextInput
+              value={inputText}
+              onChange={(event) => setInputText(event.target.value)}
+              isError={isError}
+              errorText={errorText}
+            />
+          </InputWrapper>
           <ConfirmButton
             title={'送信'}
             onClick={() => setBookName(inputText)}
@@ -41,10 +52,10 @@ const ButlerWrapper = styled.section`
   margin-bottom: 48px;
 `;
 
-const TextWrapper = styled.section`
-  position: relative;
-  margin-bottom: 48px;
-  text-align: center;
+const InputWrapper = styled.div`
+  max-width: 80%;
+  margin: auto;
+  margin-bottom: 24px;
 `;
 
 const ButtonWrapper = styled.section`

@@ -6,6 +6,7 @@ export const Colors = {
   red: '#eb5757',
   beige: '#f4ede1',
   gray: '#323B44',
+  lightGray: '#f2f2f2',
 } as const;
 
 export const FontSizes = {
