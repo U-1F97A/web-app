@@ -1,7 +1,10 @@
 import App, { AppProps } from 'next/app';
 import * as React from 'react';
+import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 import 'minireset.css';
+
+import createStore from '~/ducks/create-store';
 
 const theme = {
   body: {
@@ -18,9 +21,11 @@ class MyApp extends App {
     const { Component, pageProps }: AppProps = this.props;
 
     return (
-      <ThemeProvider theme={theme}>
-        <Component {...pageProps} />
-      </ThemeProvider>
+      <Provider store={createStore()}>
+        <ThemeProvider theme={theme}>
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </Provider>
     );
   }
 }
