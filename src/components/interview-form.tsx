@@ -2,18 +2,19 @@ import { useRouter } from 'next/router';
 import * as React from 'react';
 import { FC, useState } from 'react';
 
+import Number from '~/components/number';
 import Radio, { RadioItem } from '~/components/radio';
 import TextInput from '~/components/text-input';
 
 const InterviewForm: FC = () => {
   const router = useRouter();
+
   const [bookTitle, setBookTitle] = useState('');
   const [purpose, setPurpose] = useState('');
   const [baseValue, setBaseValue] = useState(-1);
   const [levelValue, setLevelValue] = useState(-1);
   const [habitValue, setHabitValue] = useState(-1);
   const [goodAtValue, setGoodAtValue] = useState(-1);
-
   const baseItem: RadioItem[] = [
     { key: 0, value: 'ない' },
     { key: 1, value: '多少ある' },
@@ -37,6 +38,8 @@ const InterviewForm: FC = () => {
     { key: 1, value: '苦手ではない' },
     { key: 2, value: '得意' },
   ];
+  const [timeString, setTimeString] = useState('');
+  const [minuteString, setMinuteString] = useState(1);
 
   const handleBookTitleInputChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -50,7 +53,6 @@ const InterviewForm: FC = () => {
     event.persist();
     setPurpose(event.target.value);
   };
-
   const handleBaseRadioButton = (key: number) => {
     setBaseValue(key);
   };
@@ -63,7 +65,18 @@ const InterviewForm: FC = () => {
   const handleGoodAtRadioButton = (key: number) => {
     setGoodAtValue(key);
   };
-
+  const handleTimeInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    event.persist();
+    setTimeString(event.target.value);
+  };
+  const handleMinuteInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    event.persist();
+    setMinuteString(event.target.valueAsNumber);
+  };
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     router.push('/result');
@@ -111,6 +124,20 @@ const InterviewForm: FC = () => {
           onChange={handleGoodAtRadioButton}
         />
         <p>{goodAtValue}</p>
+        <p>毎日何時から何分の時間が確保できそうですか?</p>
+        <TextInput
+          name="time"
+          value={timeString}
+          onChange={handleTimeInputChange}
+        />
+        <Number
+          name="minute"
+          value={minuteString}
+          onChange={handleMinuteInputChange}
+        />
+        <p>
+          {timeString}から{minuteString}分間
+        </p>
         <input type="submit" value="送信" />
       </form>
     </>

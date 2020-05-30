@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FC, useState } from 'react';
+import { FC } from 'react';
 
 interface Props {
   name: string;
