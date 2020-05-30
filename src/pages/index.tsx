@@ -1,31 +1,30 @@
 import { NextPage } from 'next';
 import * as React from 'react';
-import styled from 'styled-components';
-
 import GoogleLoginButton from '~/components/google-login-button';
+import { useDispatch } from 'react-redux';
+
 import InputForm from '~/components/input-form';
 import Layout from '~/components/layout';
+import { useBookState } from '~/ducks/book/selectors';
+import bookSlice from '~/ducks/book/slice';
 
 const Home: NextPage = () => {
+  const dispatch = useDispatch();
+  const bookState = useBookState().book;
+
+  const onSubmit = () => {
+    dispatch(bookSlice.actions.updateBook({ ...bookState, title: 'hoge' }));
+  };
+
   return (
     <>
       <Layout title="🥺">
-        <Main>
-          <InputForm></InputForm>
+          <InputForm />
           <GoogleLoginButton />
-        </Main>
+        {bookState.title}
       </Layout>
     </>
   );
 };
-
-const Main = styled.main`
-  min-height: 100vh;
-  padding: 0 0.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
 
 export default Home;
