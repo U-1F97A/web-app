@@ -10,7 +10,7 @@ interface Props {
   onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const ConfirmButton: FC<Props> = (props) => {
+const RejectButton: FC<Props> = (props) => {
   const { title, onClick } = props;
   return (
     <>
@@ -41,4 +41,4 @@ const TextWrapper = styled.div`
   color: ${Colors.white};
 `;
 
-export default ConfirmButton;
+export default RejectButton;

@@ -7,6 +7,7 @@ import styled, { css } from 'styled-components';
 import ButlerTalk from '~/components/butler-talk';
 import ConfirmButton from '~/components/confirm-button';
 import Layout from '~/components/layout';
+import RejectButton from '~/components/reject-button';
 import TextInput from '~/components/text-input';
 import { ButtlerText, Emphasized } from '~/styles/common-styles';
 import { Fonts } from '~/styles/mixins';
