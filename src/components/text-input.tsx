@@ -2,7 +2,7 @@ import * as React from 'react';
 import { FC } from 'react';
 
 interface Props {
-  text: string;
+  name: string;
   value: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }

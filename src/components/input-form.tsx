@@ -24,7 +24,7 @@ const InputForm: FC = () => {
       <h2>本のタイトルを入力してね</h2>
       <form onSubmit={handleSubmit}>
         <TextInput
-          text="bookTitle"
+          name="bookTitle"
           value={bookTitle}
           onChange={handleInputChange}
         />
