@@ -1,19 +1,25 @@
 import * as React from 'react';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 
 interface Props {
   name: string;
-  value: Array<string>;
+  items: RadioItem[];
+  onChange: (key: number) => void;
 }
 
+export type RadioItem = {
+  key: number;
+  value: string;
+};
+
 const Radio: FC<Props> = (props) => {
-  const { name, value } = props;
+  const { name, items, onChange } = props;
   return (
     <>
-      {value.map((item, index) => (
-        <label key={index}>
-          <input type="radio" name={name} />
-          {item}
+      {items.map((item) => (
+        <label key={item.key}>
+          <input type="radio" name={name} onChange={() => onChange(item.key)} />
+          {item.value}
           <br />
         </label>
       ))}
