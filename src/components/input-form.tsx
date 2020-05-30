@@ -6,20 +6,16 @@ import TextInput from '~/components/text-input';
 
 const InputForm: FC = () => {
   const router = useRouter();
-  const [bookTitle, setBookTitle] = useState({
-    bookTitleText: '',
-  });
+  const [bookTitle, setBookTitle] = useState('');
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.persist();
-    setBookTitle((previousState) => {
-      return { ...previousState, bookTitleText: event.target.value };
-    });
+    setBookTitle(event.target.value);
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(bookTitle.bookTitleText);
+    console.log(bookTitle);
     router.push('/karte');
   };
 
@@ -28,11 +24,11 @@ const InputForm: FC = () => {
       <h2>本のタイトルを入力してね</h2>
       <form onSubmit={handleSubmit}>
         <TextInput
-          text="bookTitleText"
-          value={bookTitle.bookTitleText}
+          text="bookTitle"
+          value={bookTitle}
           onChange={handleInputChange}
         />
-        <p>{bookTitle.bookTitleText}</p>
+        <p>{bookTitle}</p>
         <input type="submit" value="送信" />
       </form>
     </>
