@@ -1,48 +1,64 @@
 import Head from 'next/head';
-import Link from 'next/link';
 import * as React from 'react';
+import styled, { css } from 'styled-components';
+
+import { BreakPoints, Colors } from '~/styles/variables';
 
 type Props = {
   title?: string;
+  backgroundColor?: string;
 };
 
 const Layout: React.FC<Props> = ({
+  backgroundColor,
   children,
   title = 'This is the default title',
 }) => (
-  <div>
+  <Container>
     <Head>
       <title>{title}</title>
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
-    <header>
-      <nav>
-        <Link href="/">
-          <a>Home</a>
-        </Link>{' '}
-        |{' '}
-        <Link href="/about">
-          <a>About</a>
-        </Link>{' '}
-        |{' '}
-        <Link href="/users">
-          <a>Users List</a>
-        </Link>{' '}
-        | <a href="/api/users">Users API</a>
-      </nav>
-    </header>
-    {children}
-    <footer>
-      <a
-        href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Powered by <img src="/vercel.svg" alt="Vercel Logo" className="logo" />
-      </a>
-    </footer>
-  </div>
+    <Main backgroundColor={backgroundColor ?? Colors.white}>{children}</Main>
+    <Footer />
+  </Container>
 );
+
+const Container = styled.div`
+  position: relative;
+`;
+
+const Main = styled.main<{ backgroundColor: string }>`
+  min-height: 100vh;
+  padding: 48px;
+  max-width: 1024px;
+  margin: 0 auto;
+  position:relative;
+
+  ${({ backgroundColor }) =>
+    css`
+      background-color: ${backgroundColor};
+    `}
+
+  @media (max-width: ${BreakPoints.md}) {
+    padding: 32px;
+  }
+
+  @media (max-width: ${BreakPoints.sm}) {
+    padding: 16px;
+  }
+`;
+
+const Footer = styled.footer`
+  height: 48px;
+  max-width: 1024px;
+  margin: 0 auto;
+  background-color: ${Colors.green};
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+`;
 
 export default Layout;

@@ -1,21 +1,15 @@
-import App, { AppProps } from 'next/app';
+import App from 'next/app';
 import * as React from 'react';
 import { ThemeProvider } from 'styled-components';
+
+import { wrapper } from '~/store/index';
+
 import 'minireset.css';
 
-const theme = {
-  body: {
-    padding: 0,
-    margin: 0,
-    fontFamily:
-      '-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif',
-    boxSizing: 'border-box',
-  },
-};
-
-class MyApp extends App {
+const theme = {};
+class WrappedApp extends App {
   render(): JSX.Element {
-    const { Component, pageProps }: AppProps = this.props;
+    const { Component, pageProps } = this.props;
 
     return (
       <ThemeProvider theme={theme}>
@@ -25,4 +19,4 @@ class MyApp extends App {
   }
 }
 
-export default MyApp;
+export default wrapper.withRedux(WrappedApp);

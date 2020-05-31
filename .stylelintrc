@@ -1,7 +1,12 @@
-extends: [
+{
+  'processors': ['stylelint-processor-styled-components'],
+  'plugins': ['stylelint-prettier'],
+  'extends': [
     'stylelint-config-standard',
-    'stylelint-config-prettier'
+    'stylelint-config-prettier',
+    'stylelint-config-styled-components'
   ],
   rules: {
     'no-descending-specificity': null
   }
+}
