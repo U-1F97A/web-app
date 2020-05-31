@@ -53,6 +53,7 @@ const InterviewForm: FC = () => {
   const [karteItem, setKarteItem] = useState(InitialKarteItem);
 
   const [timeStringError, setTimeStringError] = useState(false);
+  const [minuteStringError, setMinuteStringError] = useState(false);
 
   const isTimeStringValidate = (timeString: string) => {
     setTimeStringError(false);
@@ -66,6 +67,20 @@ const InterviewForm: FC = () => {
     return timeStringError;
   };
 
+  const isMinuteStringValidate = (minuteString: string) => {
+    setMinuteStringError(false);
+    if (
+      Number.parseInt(minuteString) < 10 ||
+      Number.parseInt(minuteString) > 120
+    ) {
+      console.log('10~120');
+      console.log(minuteString);
+      setMinuteStringError(true);
+    }
+    console.log(minuteStringError);
+    return minuteStringError;
+  };
+
   const handleTimeStringChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -73,6 +88,16 @@ const InterviewForm: FC = () => {
     setKarteItem({
       ...karteItem,
       timeString: event.target.value,
+    });
+  };
+
+  const handleMinuteStringChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    isMinuteStringValidate(event.target.value);
+    setKarteItem({
+      ...karteItem,
+      minuteString: event.target.value,
     });
   };
 
@@ -214,12 +239,8 @@ const InterviewForm: FC = () => {
               <NumberInput
                 name="minute"
                 value={karteItem.minuteString}
-                onChange={(event) => {
-                  setKarteItem({
-                    ...karteItem,
-                    minuteString: event.target.value,
-                  });
-                }}
+                isError={minuteStringError}
+                onChange={handleMinuteStringChange}
               />
               <TimeText>分間</TimeText>
             </TimeInputWrapper>
