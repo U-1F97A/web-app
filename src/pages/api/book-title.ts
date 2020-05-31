@@ -6,7 +6,6 @@ const handler = async (request: NextApiRequest, response: NextApiResponse) => {
     method: 'POST',
     body: request.body,
   });
-  console.log(responseBookTitle);
   const json = await responseBookTitle.json();
   response.json(json);
 };

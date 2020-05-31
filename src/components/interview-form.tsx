@@ -52,7 +52,6 @@ const InterviewForm: FC = () => {
 
   const GetHealthCheck = async () => {
     const response = await fetch('http://localhost:3000/api/health-check');
-    //console.log(response);
   };
 
   const PostBookTitleSearch = async () => {
@@ -60,16 +59,13 @@ const InterviewForm: FC = () => {
       method: 'POST',
       body: JSON.stringify({ booktitle: karteItem.bookTitle }),
     });
-    //console.log(response);
   };
 
   useEffect(() => {
-    //console.log('aiueo');
     GetHealthCheck();
   }, []);
 
   useEffect(() => {
-    //console.log('aiueo');
     PostBookTitleSearch();
   }, [handleBookTitleInputChange]);
 
