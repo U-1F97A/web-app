@@ -23,11 +23,13 @@ const RejectButton: FC<Props> = (props) => {
 
 const Button = styled.button`
   text-align: center;
+  border: none;
   border-radius: 10px;
   background-color: ${Colors.beige};
   box-shadow: 4px 4px 4px rgba(36, 39, 43, 0.25);
   cursor: pointer;
-  width: 400px;
+  width: 100%;
+  max-width: 400px;
   padding: 16px;
   transform: translate(0, 0);
 

@@ -8,20 +8,21 @@ export const Colors = {
   darkGray: '#323B44',
   gray: '#828282',
   lightGray: '#f2f2f2',
+  blue: '#6fa8dc',
 } as const;
 
 export const FontSizes = {
   h1: '64px',
   h2: '48px',
   h3: '32px',
-  h4: '16px',
-  text: '16px',
-  cap: '12px',
+  h4: '24px',
+  text: '24px',
+  cap: '16px',
   sp_h1: '32px',
   sp_h2: '24px',
-  sp_h3: '16px',
-  sp_h4: '16px',
-  sp_text: '13px',
+  sp_h3: '18px',
+  sp_h4: '18px',
+  sp_text: '16px',
   sp_cap: '10px',
 } as const;
 

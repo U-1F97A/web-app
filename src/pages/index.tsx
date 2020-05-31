@@ -7,7 +7,7 @@ import ButlerTalk from '~/components/butler-talk';
 import ConfirmButton from '~/components/confirm-button';
 import Layout from '~/components/layout';
 import { Fonts } from '~/styles/mixins';
-import { Colors } from '~/styles/variables';
+import { Colors, BreakPoints } from '~/styles/variables';
 
 const Home: NextPage = () => {
   const router = useRouter();
@@ -74,6 +74,7 @@ const Title = styled.h1`
   position: relative;
   margin-bottom: 24px;
   display: inline-block;
+  z-index: 1;
 
   &::after{
     content: '';

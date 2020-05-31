@@ -34,12 +34,16 @@ const Main = styled.main<{ backgroundColor: string }>`
   padding: 48px;
   max-width: 1024px;
   margin: 0 auto;
- 
+  position:relative;
 
   ${({ backgroundColor }) =>
     css`
       background-color: ${backgroundColor};
     `}
+
+  @media (max-width: ${BreakPoints.md}) {
+    padding: 32px;
+  }
 
   @media (max-width: ${BreakPoints.sm}) {
     padding: 16px;

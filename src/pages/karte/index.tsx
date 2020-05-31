@@ -14,7 +14,7 @@ import { StoreState } from '~/store';
 import types, { BookState } from '~/store/book/types';
 import { ButtlerText, Emphasized } from '~/styles/common-styles';
 import { Fonts } from '~/styles/mixins';
-import { Colors } from '~/styles/variables';
+import { Colors, BreakPoints } from '~/styles/variables';
 
 const Karte: NextPage = () => {
   const router = useRouter();
@@ -91,27 +91,31 @@ const Karte: NextPage = () => {
               <BookImg src={bookState.image ?? ''} />
               <BookTitle>{bookState.title}</BookTitle>
             </BookWrapper>
-            <ConfirmButton
-              title={'あってる！'}
-              onClick={() => router.push('/karte/detail')}
-            />
-            <RejectButton
-              title={'ちがう'}
-              onClick={() => setIsSuccess(false)}
-            />
+            <BookButtonWrapper>
+              <ConfirmButton
+                title={'あってる！'}
+                onClick={() => router.push('/karte/detail')}
+              />
+              <RejectButton
+                title={'ちがう'}
+                onClick={() => setIsSuccess(false)}
+              />
+            </BookButtonWrapper>
           </InputContent>
         </ButtonWrapper>
       </Layout>
     </>
   );
 };
+
 const ButlerWrapper = styled.section`
   position: relative;
-  margin-bottom: 48px;
+  margin-bottom: 64px;
 `;
 
 const ButtlerTextWrapper = styled.div`
   position: relative;
+  height: 48px;
 `;
 
 const CustomButtlerText = styled(ButtlerText)<{ isDisplay: boolean }>`
@@ -128,20 +132,20 @@ const CustomButtlerText = styled(ButtlerText)<{ isDisplay: boolean }>`
     isDisplay &&
     css`
       opacity: 1;
-      display: block;
+      display: inline;
     `}
 `;
 
 const InputWrapper = styled.div`
   max-width: 80%;
   margin: auto;
-  margin-bottom: 24px;
+  margin-bottom: 64px;
 `;
 
 const BookWrapper = styled.div`
   max-width: 80%;
   margin: auto;
-  margin-bottom: 24px;
+  margin-bottom: 64px;
 `;
 
 const InputContent = styled.div<{ isDisplay: boolean }>`
@@ -175,8 +179,20 @@ const BookTitle = styled.p`
 
 const ButtonWrapper = styled.section`
   position: relative;
-  margin-bottom: 48px;
   text-align: center;
+`;
+
+const BookButtonWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  @media (max-width: ${BreakPoints.md}) {
+    flex-direction: column;
+
+    & > * {
+      margin: 16px 0;
+    }
+  }
 `;
 
 export default Karte;

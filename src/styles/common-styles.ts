@@ -13,6 +13,7 @@ export const Emphasized = styled.span`
   font-weight: ${FontWeights.bold};
   position: relative;
   margin: 0 4px;
+  z-index: 1;
 
   &::after {
     content: '';

@@ -14,6 +14,8 @@ import {
   habitItem,
   goodAtItem,
 } from '~/constants/karte-question-items';
+import { Fonts } from '~/styles/mixins';
+import { Colors } from '~/styles/variables';
 
 type KarteItem = {
   bookTitle: string;
@@ -159,23 +161,34 @@ const InterviewForm: FC = () => {
           no={5}
           text={'毎日何時から何分の時間が確保できそうですか?'}
         >
-          <TextInput
-            name="time"
-            value={karteItem.timeString}
-            onChange={(event) => {
-              setKarteItem({ ...karteItem, timeString: event.target.value });
-            }}
-          />
-          <NumberInput
-            name="minute"
-            value={karteItem.minuteString}
-            onChange={(event) => {
-              setKarteItem({ ...karteItem, minuteString: event.target.value });
-            }}
-          />
-          <p>
-            {karteItem.timeString}から{karteItem.minuteString}分間
-          </p>
+          <TimeWrapper>
+            <TimeInputWrapper>
+              <TextInput
+                name="time"
+                value={karteItem.timeString}
+                onChange={(event) => {
+                  setKarteItem({
+                    ...karteItem,
+                    timeString: event.target.value,
+                  });
+                }}
+              />
+              <TimeText>時から</TimeText>
+            </TimeInputWrapper>
+            <TimeInputWrapper>
+              <NumberInput
+                name="minute"
+                value={karteItem.minuteString}
+                onChange={(event) => {
+                  setKarteItem({
+                    ...karteItem,
+                    minuteString: event.target.value,
+                  });
+                }}
+              />
+              <TimeText>分間</TimeText>
+            </TimeInputWrapper>
+          </TimeWrapper>
         </KarteQuestionBox>
         <ConfirmButton title="送信" onClick={onClickSubmit} />
       </CustomForm>
@@ -188,6 +201,31 @@ const CustomForm = styled.form`
   & > * {
     margin-bottom: 48px;
   }
+
+  & > *:nth-last-child() {
+    margin-bottom: 48px;
+  }
+`;
+
+const TimeInputWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  & > *:nth-child(1) {
+    width: 80%;
+  }
+`;
+
+const TimeWrapper = styled.div`
+  & > * {
+    margin: 20px;
+  }
+`;
+
+const TimeText = styled.div`
+  ${Fonts.h4}
+  color: ${Colors.black};
+  display: inline-block;
 `;
 
 export default InterviewForm;
