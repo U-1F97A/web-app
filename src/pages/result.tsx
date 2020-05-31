@@ -54,7 +54,7 @@ const ButlerWrapper = styled.section`
 `;
 
 const CustomButtlerText = styled(ButtlerText)`
-  line-height: 1.5;
+  line-height: 1.5 !important;
 `;
 
 const TextWrapper = styled.div`
@@ -76,6 +76,7 @@ const ButtonWrapper = styled.section`
   grid-template-rows: repeat(3, 1fr);
   gap: 40px;
   justify-content: center;
+  margin-bottom: 64px;
 `;
 
 export default Result;

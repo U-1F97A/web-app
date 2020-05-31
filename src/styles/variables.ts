@@ -20,9 +20,9 @@ export const FontSizes = {
   cap: '16px',
   sp_h1: '32px',
   sp_h2: '24px',
-  sp_h3: '16px',
-  sp_h4: '16px',
-  sp_text: '13px',
+  sp_h3: '18px',
+  sp_h4: '18px',
+  sp_text: '16px',
   sp_cap: '10px',
 } as const;
 

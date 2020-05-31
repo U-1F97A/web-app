@@ -62,7 +62,6 @@ const text = css`
 
   @media (max-width: ${BreakPoints.sm}) {
     font-size: ${FontSizes.sp_text};
-    line-height: ${FontSizes.sp_text};
   }
 `;
 
