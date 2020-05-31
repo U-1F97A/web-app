@@ -22,6 +22,7 @@ const CalenderButton: FC<Props> = (props) => {
 
 const Button = styled.a`
   text-align: center;
+  text-decoration: none;
   border-radius: 10px;
   background-color: ${Colors.green};
   border: none;
