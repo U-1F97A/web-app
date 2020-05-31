@@ -10,7 +10,7 @@ interface Props {
   value: string;
   placeholder?: string;
   isError?: boolean;
-  errorText?: text;
+  errorText?: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 

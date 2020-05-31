@@ -75,26 +75,27 @@ const InterviewForm: FC = () => {
           <RadioInput
             name="base"
             items={knowledgeBaseItem}
+            selectedKey={karteItem.knowledgeBaseValue}
             onChange={(key) => {
               setKarteItem({ ...karteItem, knowledgeBaseValue: key });
             }}
           />
         </KarteQuestionBox>
         <KarteQuestionBox no={3} text={'本のレベルはどのくらいですか？'}>
-          <h3>本のレベルはどのくらいですか？</h3>
           <RadioInput
             name="level"
             items={levelItem}
+            selectedKey={karteItem.levelValue}
             onChange={(key) => {
               setKarteItem({ ...karteItem, levelValue: key });
             }}
           />
-          <p>{karteItem.levelValue}</p>
         </KarteQuestionBox>
         <KarteQuestionBox no={4} text={'普段から本は読みますか？'}>
           <RadioInput
             name="habit"
             items={habitItem}
+            selectedKey={karteItem.habitValue}
             onChange={(key) => {
               setKarteItem({ ...karteItem, habitValue: key });
             }}
@@ -104,6 +105,7 @@ const InterviewForm: FC = () => {
           <RadioInput
             name="goodAt"
             items={goodAtItem}
+            selectedKey={karteItem.goodAtValue}
             onChange={(key) => {
               setKarteItem({ ...karteItem, goodAtValue: key });
             }}
