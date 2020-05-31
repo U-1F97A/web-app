@@ -7,12 +7,12 @@ export const knowledgeBaseItem: RadioInputItem[] = [
 ];
 
 export const levelItem: RadioInputItem[] = [
-  { key: 0, value: '0からの入門レベル(例: Python入門)' },
+  { key: 0, value: '入門レベル' },
   {
     key: 1,
-    value: '基礎知識を前提とする入門レベル(例: ゼロから作るDeep Learning)',
+    value: '中級レベル',
   },
-  { key: 2, value: '応用レベル(例: 自然言語処理)' },
+  { key: 2, value: '応用レベル' },
 ];
 
 export const habitItem: RadioInputItem[] = [
