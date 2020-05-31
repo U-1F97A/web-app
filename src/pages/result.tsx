@@ -67,13 +67,11 @@ const TextWrapper = styled.div`
 const Description = styled.p`
   ${Fonts.text}
   color: ${Colors.black};
-  max-width: 60%;
   margin: auto;
 `;
 
 const ButtonWrapper = styled.section`
   position: relative;
-  margin-bottom: 48px;
   display: grid;
   grid-template-rows: repeat(3, 1fr);
   gap: 40px;
