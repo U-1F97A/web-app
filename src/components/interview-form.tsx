@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import * as React from 'react';
-import { FC, useState } from 'react';
+import { FC, useState, useEffect } from 'react';
 
 import NumberInput from '~/components/number-input';
 import RadioInput from '~/components/radio-input';
@@ -38,10 +38,40 @@ const InterviewForm: FC = () => {
   const router = useRouter();
   const [karteItem, setKarteItem] = useState(InitialKarteItem);
 
+  const handleBookTitleInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    event.persist();
+    setKarteItem({ ...karteItem, bookTitle: event.target.value });
+  };
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     router.push('/result');
   };
+
+  const GetHealthCheck = async () => {
+    const response = await fetch('http://localhost:3000/api/health-check');
+    //console.log(response);
+  };
+
+  const PostBookTitleSearch = async () => {
+    const response = await fetch('http://localhost:3000/api/book-title', {
+      method: 'POST',
+      body: JSON.stringify({ booktitle: karteItem.bookTitle }),
+    });
+    //console.log(response);
+  };
+
+  useEffect(() => {
+    //console.log('aiueo');
+    GetHealthCheck();
+  }, []);
+
+  useEffect(() => {
+    //console.log('aiueo');
+    PostBookTitleSearch();
+  }, [handleBookTitleInputChange]);
 
   return (
     <>
@@ -52,9 +82,7 @@ const InterviewForm: FC = () => {
           <TextInput
             name="bookTitle"
             value={karteItem.bookTitle}
-            onChange={(event) => {
-              setKarteItem({ ...karteItem, bookTitle: event.target.value });
-            }}
+            onChange={handleBookTitleInputChange}
           />
           <p>{karteItem.bookTitle}</p>
         </div>
