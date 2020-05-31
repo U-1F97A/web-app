@@ -1,15 +1,18 @@
 import { NextPage } from 'next';
 import * as React from 'react';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import styled, { css } from 'styled-components';
 
 import InterviewForm from '~/components/interview-form';
 import Layout from '~/components/layout';
+import { StoreState } from '~/store';
+import types, { BookState } from '~/store/book/types';
 import { Fonts } from '~/styles/mixins';
-import { Colors } from '~/styles/variables';
+import { Colors, BreakPoints } from '~/styles/variables';
 
 const Home: NextPage = () => {
-  const [bookName, setBookName] = useState('');
+  const bookState = useSelector<StoreState, BookState>((s) => s.book);
 
   return (
     <>
@@ -22,7 +25,7 @@ const Home: NextPage = () => {
             <Binder></Binder>
             <TitleWrapper>
               <Title>読書問診票</Title>
-              <SubTitle>{`(${bookName}を読んでみよう)`}</SubTitle>
+              <SubTitle>{`(${bookState.title}を読んでみよう)`}</SubTitle>
             </TitleWrapper>
           </BinderWrapper>
           <InterviewForm />
@@ -32,9 +35,12 @@ const Home: NextPage = () => {
   );
 };
 
+const FormWrapper = styled.div``;
+
 const Wrapper = styled.div`
   position: relative;
   width: 100%;
+  margin-bottom: 32px;
 `;
 
 const BinderWrapper = styled.div`
@@ -66,6 +72,16 @@ const Binder = styled.div`
     border: 10px solid ${Colors.darkGray};
     border-radius: 10px;
     box-shadow: 4px 4px 4px rgba(66, 75, 84, 0.25);
+  }
+
+  @media (max-width: ${BreakPoints.sm}) {
+    width: 200px;
+    height: 30px;
+    top: -148px;
+    &::after {
+      top: -20px;
+      height: 100px;
+    }
   }
 `;
 

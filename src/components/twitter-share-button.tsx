@@ -32,7 +32,8 @@ const Button = styled.a`
   background-color: ${Colors.blue};
   box-shadow: 4px 4px 4px rgba(36, 39, 43, 0.25);
   cursor: pointer;
-  width: 400px;
+  width: 100%;
+  max-width: 400px;
   padding: 16px;
   transform: translate(0, 0);
 

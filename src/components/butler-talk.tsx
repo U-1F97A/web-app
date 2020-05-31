@@ -2,6 +2,8 @@ import * as React from 'react';
 import { FC } from 'react';
 import styled, { css } from 'styled-components';
 
+import { BreakPoints } from '~/styles/variables';
+
 const ButlerTalk: FC = (props) => {
   const { children } = props;
   return (
@@ -19,11 +21,12 @@ const Wrapper = styled.div`
 `;
 
 const Butler = styled.img`
-  height: 200px;
+  width: 30%;
+  margin-bottom: 16px;
 `;
 
 const TextWrapper = styled.div`
-  margin: 10px 0;
+  margin: auto;
 `;
 
 export default ButlerTalk;

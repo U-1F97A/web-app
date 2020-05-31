@@ -13,6 +13,7 @@ export const Emphasized = styled.span`
   font-weight: ${FontWeights.bold};
   position: relative;
   margin: 0 4px;
+  z-index: 1;
 
   &::after {
     content: '';
@@ -23,5 +24,6 @@ export const Emphasized = styled.span`
     height: 6px;
     width: 100%;
     background-color: ${Colors.yellow};
+    z-index: -1;
   }
 `;

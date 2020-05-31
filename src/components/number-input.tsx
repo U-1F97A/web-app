@@ -32,11 +32,11 @@ const NumberInput: FC<Props> = (props) => {
 };
 
 const InputWrapper = styled.div<{ isError: boolean }>`
-  height: 32px;
+  height: 48px;
   width: 100%;
-  border-radius: 16px;
+  border-radius: 24px;
   background-color: ${Colors.lightGray};
-  padding: 0 16px;
+  padding: 0 24px;
   position: relative;
 
   ${({ isError }) =>
