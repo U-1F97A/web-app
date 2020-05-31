@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import * as React from 'react';
-import { FC, useState } from 'react';
+import { FC, useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 
 import ConfirmButton from '~/components/confirm-button';
@@ -41,10 +41,36 @@ const InterviewForm: FC = () => {
   const router = useRouter();
   const [karteItem, setKarteItem] = useState(InitialKarteItem);
 
+  const handleBookTitleInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    event.persist();
+    setKarteItem({ ...karteItem, bookTitle: event.target.value });
+  };
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     router.push('/result');
   };
+
+  const GetHealthCheck = async () => {
+    const response = await fetch('http://localhost:3000/api/health-check');
+  };
+
+  const PostBookTitleSearch = async () => {
+    const response = await fetch('http://localhost:3000/api/book-title', {
+      method: 'POST',
+      body: JSON.stringify({ booktitle: karteItem.bookTitle }),
+    });
+  };
+
+  useEffect(() => {
+    GetHealthCheck();
+  }, []);
+
+  useEffect(() => {
+    PostBookTitleSearch();
+  }, [handleBookTitleInputChange]);
 
   return (
     <>
@@ -53,9 +79,7 @@ const InterviewForm: FC = () => {
           <TextInput
             name="bookTitle"
             value={karteItem.bookTitle}
-            onChange={(event) => {
-              setKarteItem({ ...karteItem, bookTitle: event.target.value });
-            }}
+            onChange={handleBookTitleInputChange}
           />
           <p>{karteItem.bookTitle}</p>
         </KarteQuestionBox>
