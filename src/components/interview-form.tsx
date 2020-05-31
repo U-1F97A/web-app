@@ -26,6 +26,11 @@ type KarteItem = {
   minuteString: string;
 };
 
+type Schedule = {
+  s3URL?: string;
+  comment?: string;
+};
+
 const InitialKarteItem: KarteItem = {
   bookTitle: '',
   purpose: '',
@@ -40,30 +45,64 @@ const InitialKarteItem: KarteItem = {
 const InterviewForm: FC = () => {
   const router = useRouter();
   const [karteItem, setKarteItem] = useState(InitialKarteItem);
+  const [generatedSchedule, setGeneratedSchedule] = useState<Schedule>({});
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const onClickSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    router.push('/result');
+
+    PostGenerateSchedule(
+      '',
+      karteItem.purpose,
+      karteItem.knowledgeBaseValue,
+      karteItem.levelValue,
+      karteItem.habitValue,
+      karteItem.goodAtValue,
+      karteItem.timeString,
+      karteItem.minuteString
+    );
   };
 
-  const PostBookTitleSearch = async () => {
-    const response = await fetch('http://localhost:3000/api/book-title', {
-      method: 'POST',
-      body: JSON.stringify({ booktitle: karteItem.bookTitle }),
-    });
+  const PostGenerateSchedule = async (
+    booktitle: string,
+    purpose: string,
+    base: number,
+    level: number,
+    habit: number,
+    goodAt: number,
+    timeFrom: string,
+    maxPerDay: string
+  ) => {
+    const response = await fetch(
+      'http://localhost:3000/api/generate-schedule',
+      {
+        method: 'POST',
+        body: JSON.stringify({
+          booktitle,
+          purpose,
+          base,
+          level,
+          habit,
+          goodAt,
+          timeFrom,
+          maxPerDay,
+        }),
+      }
+    );
+    const json = await response.json();
+    if (json.s3URL) {
+      setGeneratedSchedule({ s3URL: json.s3URL, comment: json.comment });
+    }
   };
 
   useEffect(() => {
-    GetHealthCheck();
-  }, []);
-
-  useEffect(() => {
-    PostBookTitleSearch();
-  }, [handleBookTitleInputChange]);
+    if (generatedSchedule.s3URL) {
+      router.push('/result');
+    }
+  }, [generatedSchedule]);
 
   return (
     <>
-      <CustomForm onSubmit={handleSubmit}>
+      <CustomForm>
         <KarteQuestionBox no={1} text={'本を読む目的はなんですか？'}>
           <TextInput
             name="purpose"
@@ -138,7 +177,7 @@ const InterviewForm: FC = () => {
             {karteItem.timeString}から{karteItem.minuteString}分間
           </p>
         </KarteQuestionBox>
-        <ConfirmButton title="送信" />
+        <ConfirmButton title="送信" onClick={onClickSubmit} />
       </CustomForm>
     </>
   );
