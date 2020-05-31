@@ -7,4 +7,6 @@ type ReturnTypes<T> = {
 type CreatorsToActions<T> = Unbox<ReturnTypes<T>>;
 
 // todoのActionCreatorを渡す
-export type Actions = CreatorsToActions<typeof import('./book/actions')>;
+export type Actions = CreatorsToActions<
+  typeof import('./book/actions') | typeof import('./schedule/actions')
+>;

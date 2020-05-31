@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import * as React from 'react';
 import { FC, useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled, { css } from 'styled-components';
 
 import ConfirmButton from '~/components/confirm-button';
@@ -14,6 +15,9 @@ import {
   habitItem,
   goodAtItem,
 } from '~/constants/karte-question-items';
+import { StoreState } from '~/store';
+import { BookState } from '~/store/book/types';
+import types, { ScheduleState } from '~/store/schedule/types';
 import { Fonts } from '~/styles/mixins';
 import { Colors } from '~/styles/variables';
 
@@ -26,11 +30,6 @@ type KarteItem = {
   goodAtValue: number;
   timeString: string;
   minuteString: string;
-};
-
-type Schedule = {
-  s3URL?: string;
-  comment?: string;
 };
 
 const InitialKarteItem: KarteItem = {
@@ -46,14 +45,18 @@ const InitialKarteItem: KarteItem = {
 
 const InterviewForm: FC = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
+  const bookState = useSelector<StoreState, BookState>((s) => s.book);
+  const scheduleState = useSelector<StoreState, ScheduleState>(
+    (s) => s.schedule
+  );
   const [karteItem, setKarteItem] = useState(InitialKarteItem);
-  const [generatedSchedule, setGeneratedSchedule] = useState<Schedule>({});
 
   const onClickSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
 
     PostGenerateSchedule(
-      '',
+      bookState.title,
       karteItem.purpose,
       karteItem.knowledgeBaseValue,
       karteItem.levelValue,
@@ -92,15 +95,24 @@ const InterviewForm: FC = () => {
     );
     const json = await response.json();
     if (json.s3URL) {
-      setGeneratedSchedule({ s3URL: json.s3URL, comment: json.comment });
+      dispatch({
+        type: types.update,
+        payload: {
+          book: {
+            ...scheduleState,
+            s3URL: json.s3URL,
+            comment: json.comment,
+          },
+        },
+      });
     }
   };
 
   useEffect(() => {
-    if (generatedSchedule.s3URL) {
+    if (scheduleState.s3URL) {
       router.push('/result');
     }
-  }, [generatedSchedule]);
+  }, [scheduleState]);
 
   return (
     <>
