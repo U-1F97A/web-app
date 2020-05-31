@@ -77,31 +77,29 @@ const InterviewForm: FC = () => {
     timeFrom: string,
     maxPerDay: string
   ) => {
-    const response = await fetch(
-      'http://localhost:3000/api/generate-schedule',
-      {
-        method: 'POST',
-        body: JSON.stringify({
-          booktitle,
-          purpose,
-          base,
-          level,
-          habit,
-          goodAt,
-          timeFrom,
-          maxPerDay,
-        }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }
-    );
+    const response = await fetch('/api/generate-schedule', {
+      method: 'POST',
+      body: JSON.stringify({
+        booktitle,
+        purpose,
+        base,
+        level,
+        habit,
+        goodAt,
+        timeFrom,
+        maxPerDay,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
     const json = await response.json();
     if (json.s3URL) {
+      console.log(json);
       dispatch({
         type: types.update,
         payload: {
-          book: {
+          schedule: {
             ...scheduleState,
             s3URL: json.s3URL,
             comment: json.comment,

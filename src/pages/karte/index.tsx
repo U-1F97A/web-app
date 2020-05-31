@@ -25,9 +25,10 @@ const Karte: NextPage = () => {
   const [isSuccess, setIsSuccess] = useState(false);
 
   const PostBookTitleSearch = async (booktitle: string) => {
-    const response = await fetch('http://localhost:3000/api/book-title', {
+    const requestBody = JSON.stringify({ booktitle });
+    const response = await fetch(`/api/book-title`, {
       method: 'POST',
-      body: JSON.stringify({ booktitle }),
+      body: requestBody,
       headers: {
         'Content-Type': 'application/json',
       },
@@ -56,7 +57,9 @@ const Karte: NextPage = () => {
   }, [bookState]);
 
   useEffect(() => {
-    PostBookTitleSearch(bookName);
+    if (bookName !== '') {
+      PostBookTitleSearch(bookName);
+    }
   }, [bookName]);
 
   return (

@@ -2,21 +2,25 @@ import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import * as React from 'react';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import styled, { css } from 'styled-components';
 
 import ButlerTalk from '~/components/butler-talk';
+import CalenderButton from '~/components/calender-button';
 import ConfirmButton from '~/components/confirm-button';
 import Layout from '~/components/layout';
 import RejectButton from '~/components/reject-button';
 import TwitterShareButton from '~/components/twitter-share-button';
+import { StoreState } from '~/store';
+import types, { ScheduleState } from '~/store/schedule/types';
 import { ButtlerText, Emphasized } from '~/styles/common-styles';
 import { Fonts } from '~/styles/mixins';
 import { Colors } from '~/styles/variables';
 
 const Result: NextPage = () => {
   const router = useRouter();
-  const [advice, setAdvice] = useState(
-    '問診の結果から、あなたは毎日25分の時間を確保し、その時間に13ページ読むことができると推測しました。この本は253ページあるので、20日で読み終わる計算です。このスケジュールを記述した .ics ファイルを作成しました。ぜひご活用ください。'
+  const scheduleState = useSelector<StoreState, ScheduleState>(
+    (s) => s.schedule
   );
 
   return (
@@ -31,13 +35,10 @@ const Result: NextPage = () => {
           </ButlerTalk>
         </ButlerWrapper>
         <TextWrapper>
-          <Description>{advice}</Description>
+          <Description>{scheduleState.comment}</Description>
         </TextWrapper>
         <ButtonWrapper>
-          <ConfirmButton
-            title={'カレンダーに登録する'}
-            onClick={() => router.push('/')}
-          />
+          <CalenderButton href={scheduleState.s3URL} />
           <TwitterShareButton bookTitle={'hogepiyo'} />
           <RejectButton
             title={'もういちどやってみる'}

@@ -6,7 +6,7 @@ const handler = async (request: NextApiRequest, response: NextApiResponse) => {
     'https://u-1f97a-api.glitch.me/genSchedule',
     {
       method: request.method,
-      body: request.body,
+      body: JSON.stringify(request.body),
       headers: {
         'Content-Type': 'application/json',
       },
