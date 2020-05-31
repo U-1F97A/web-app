@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import * as React from 'react';
-import { FC, useState } from 'react';
+import { FC, useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 
 import ConfirmButton from '~/components/confirm-button';
@@ -46,19 +46,24 @@ const InterviewForm: FC = () => {
     router.push('/result');
   };
 
+  const PostBookTitleSearch = async () => {
+    const response = await fetch('http://localhost:3000/api/book-title', {
+      method: 'POST',
+      body: JSON.stringify({ booktitle: karteItem.bookTitle }),
+    });
+  };
+
+  useEffect(() => {
+    GetHealthCheck();
+  }, []);
+
+  useEffect(() => {
+    PostBookTitleSearch();
+  }, [handleBookTitleInputChange]);
+
   return (
     <>
       <CustomForm onSubmit={handleSubmit}>
-        <KarteQuestionBox no={1} text={'本のタイトルを入力してね'}>
-          <TextInput
-            name="bookTitle"
-            value={karteItem.bookTitle}
-            onChange={(event) => {
-              setKarteItem({ ...karteItem, bookTitle: event.target.value });
-            }}
-          />
-          <p>{karteItem.bookTitle}</p>
-        </KarteQuestionBox>
         <KarteQuestionBox no={1} text={'本を読む目的はなんですか？'}>
           <TextInput
             name="purpose"
