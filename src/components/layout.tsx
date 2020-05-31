@@ -1,49 +1,60 @@
 import Head from 'next/head';
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+import { BreakPoints, Colors } from '~/styles/variables';
 
 type Props = {
   title?: string;
+  backgroundColor?: string;
 };
 
 const Layout: React.FC<Props> = ({
+  backgroundColor,
   children,
   title = 'This is the default title',
 }) => (
-  <div>
+  <Container>
     <Head>
       <title>{title}</title>
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
-    <header>
-      <nav>
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/users">Users List</a>
-        <a href="/api/users">Users API</a>
-      </nav>
-    </header>
-    <Main>{children}</Main>
-    <footer>
-      <a
-        href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Powered by <img src="/vercel.svg" alt="Vercel Logo" className="logo" />
-      </a>
-    </footer>
-  </div>
+    <Main backgroundColor={backgroundColor ?? Colors.white}>{children}</Main>
+    <Footer />
+  </Container>
 );
 
-const Main = styled.main`
+const Container = styled.div`
+  position: relative;
+`;
+
+const Main = styled.main<{ backgroundColor: string }>`
   min-height: 100vh;
-  padding: 0 0.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  padding: 48px;
+  max-width: 1024px;
+  margin: 0 auto;
+ 
+
+  ${({ backgroundColor }) =>
+    css`
+      background-color: ${backgroundColor};
+    `}
+
+  @media (max-width: ${BreakPoints.sm}) {
+    padding: 16px;
+  }
+`;
+
+const Footer = styled.footer`
+  height: 48px;
+  max-width: 1024px;
+  margin: 0 auto;
+  background-color: ${Colors.green};
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 `;
 
 export default Layout;
