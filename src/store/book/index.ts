@@ -5,7 +5,6 @@ import types, { BookState } from './types';
 export function initialState(injects?: BookState): BookState {
   return {
     title: '',
-    author: '',
     pages: 0,
     ...injects,
   };
