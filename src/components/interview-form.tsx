@@ -41,20 +41,9 @@ const InterviewForm: FC = () => {
   const router = useRouter();
   const [karteItem, setKarteItem] = useState(InitialKarteItem);
 
-  const handleBookTitleInputChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    event.persist();
-    setKarteItem({ ...karteItem, bookTitle: event.target.value });
-  };
-
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     router.push('/result');
-  };
-
-  const GetHealthCheck = async () => {
-    const response = await fetch('http://localhost:3000/api/health-check');
   };
 
   const PostBookTitleSearch = async () => {
@@ -75,14 +64,6 @@ const InterviewForm: FC = () => {
   return (
     <>
       <CustomForm onSubmit={handleSubmit}>
-        <KarteQuestionBox no={1} text={'本のタイトルを入力してね'}>
-          <TextInput
-            name="bookTitle"
-            value={karteItem.bookTitle}
-            onChange={handleBookTitleInputChange}
-          />
-          <p>{karteItem.bookTitle}</p>
-        </KarteQuestionBox>
         <KarteQuestionBox no={1} text={'本を読む目的はなんですか？'}>
           <TextInput
             name="purpose"
