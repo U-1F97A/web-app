@@ -91,6 +91,9 @@ const InterviewForm: FC = () => {
           timeFrom,
           maxPerDay,
         }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
       }
     );
     const json = await response.json();

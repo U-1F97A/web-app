@@ -28,6 +28,9 @@ const Karte: NextPage = () => {
     const response = await fetch('http://localhost:3000/api/book-title', {
       method: 'POST',
       body: JSON.stringify({ booktitle }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
     });
     const json = await response.json();
 
