@@ -8,6 +8,7 @@ export const Colors = {
   darkGray: '#323B44',
   gray: '#828282',
   lightGray: '#f2f2f2',
+  blue: '#6fa8dc',
 } as const;
 
 export const FontSizes = {

@@ -8,7 +8,7 @@ import ButlerTalk from '~/components/butler-talk';
 import ConfirmButton from '~/components/confirm-button';
 import Layout from '~/components/layout';
 import RejectButton from '~/components/reject-button';
-import TextInput from '~/components/text-input';
+import TwitterShareButton from '~/components/twitter-share-button';
 import { ButtlerText, Emphasized } from '~/styles/common-styles';
 import { Fonts } from '~/styles/mixins';
 import { Colors } from '~/styles/variables';
@@ -38,10 +38,7 @@ const Result: NextPage = () => {
             title={'カレンダーに登録する'}
             onClick={() => router.push('/')}
           />
-          <ConfirmButton
-            title={'twitterで呟く'}
-            onClick={() => router.push('/')}
-          />
+          <TwitterShareButton bookTitle={'hogepiyo'} />
           <RejectButton
             title={'もういちどやってみる'}
             onClick={() => router.push('/')}
@@ -63,7 +60,7 @@ const CustomButtlerText = styled(ButtlerText)`
 const TextWrapper = styled.div`
   max-width: 80%;
   margin: auto;
-  margin-bottom: 24px;
+  margin-bottom: 48px;
   text-align: center;
 `;
 
@@ -77,7 +74,10 @@ const Description = styled.p`
 const ButtonWrapper = styled.section`
   position: relative;
   margin-bottom: 48px;
-  text-align: center;
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  gap: 40px;
+  justify-content: center;
 `;
 
 export default Result;

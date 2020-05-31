@@ -23,6 +23,5 @@ export const Emphasized = styled.span`
     height: 6px;
     width: 100%;
     background-color: ${Colors.yellow};
-    z-index: -1;
   }
 `;
