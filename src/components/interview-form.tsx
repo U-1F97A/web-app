@@ -52,6 +52,55 @@ const InterviewForm: FC = () => {
   );
   const [karteItem, setKarteItem] = useState(InitialKarteItem);
 
+  const [timeStringError, setTimeStringError] = useState(false);
+  const [minuteStringError, setMinuteStringError] = useState(false);
+
+  const isTimeStringValidate = (timeString: string) => {
+    setTimeStringError(false);
+    const trueString = new RegExp('([0-1]\\d|2[0-3]):[0-5]\\d$');
+    if (!timeString.match(trueString)) {
+      console.log('00:00じゃない');
+      console.log(timeString);
+      setTimeStringError(true);
+    }
+    console.log(timeStringError);
+    return timeStringError;
+  };
+
+  const isMinuteStringValidate = (minuteString: string) => {
+    setMinuteStringError(false);
+    if (
+      Number.parseInt(minuteString) < 10 ||
+      Number.parseInt(minuteString) > 120
+    ) {
+      console.log('10~120');
+      console.log(minuteString);
+      setMinuteStringError(true);
+    }
+    console.log(minuteStringError);
+    return minuteStringError;
+  };
+
+  const handleTimeStringChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    isTimeStringValidate(event.target.value);
+    setKarteItem({
+      ...karteItem,
+      timeString: event.target.value,
+    });
+  };
+
+  const handleMinuteStringChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    isMinuteStringValidate(event.target.value);
+    setKarteItem({
+      ...karteItem,
+      minuteString: event.target.value,
+    });
+  };
+
   const onClickSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
 
@@ -179,12 +228,8 @@ const InterviewForm: FC = () => {
               <TextInput
                 name="time"
                 value={karteItem.timeString}
-                onChange={(event) => {
-                  setKarteItem({
-                    ...karteItem,
-                    timeString: event.target.value,
-                  });
-                }}
+                isError={timeStringError}
+                onChange={handleTimeStringChange}
               />
               <TimeText>時から</TimeText>
             </TimeInputWrapper>
@@ -192,12 +237,8 @@ const InterviewForm: FC = () => {
               <NumberInput
                 name="minute"
                 value={karteItem.minuteString}
-                onChange={(event) => {
-                  setKarteItem({
-                    ...karteItem,
-                    minuteString: event.target.value,
-                  });
-                }}
+                isError={minuteStringError}
+                onChange={handleMinuteStringChange}
               />
               <TimeText>分間</TimeText>
             </TimeInputWrapper>
