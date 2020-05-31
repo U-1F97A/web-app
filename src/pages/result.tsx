@@ -38,7 +38,7 @@ const Result: NextPage = () => {
           <Description>{scheduleState.comment}</Description>
         </TextWrapper>
         <ButtonWrapper>
-          <CalenderButton href={scheduleState.s3URL} />
+          <CalenderButton href={scheduleState.s3URL ?? ``} />
           <TwitterShareButton bookTitle={'hogepiyo'} />
           <RejectButton
             title={'もういちどやってみる'}
