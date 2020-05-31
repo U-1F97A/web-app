@@ -14,6 +14,7 @@
     "fmt": "prettier *.md next.config.js src/**/*.{html,js,json,ts,tsx,md} --write -c"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "minireset.css": "^0.0.6",
     "next": "9.4.2",
